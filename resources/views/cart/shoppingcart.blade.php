@@ -91,7 +91,7 @@
                             <h3 class="text-left">Subtotal</h3>
                         </td>
                         <td class="text-right">
-                            <h3><strong>$24.59</strong></h3>
+                            <h3><strong>{{presentPrice(Cart::subtotal())}}</strong></h3>
                         </td>
                     </tr>
                     <tr>
@@ -102,7 +102,7 @@
                             <h3 class="text-left">GST(15%)</h3>
                         </td>
                         <td class="text-right">
-                            <h3><strong>$6.94</strong></h3>
+                            <h3><strong>{{presentPrice(Cart::tax())}}</strong></h3>
                         </td>
                     </tr>
                     <tr>
@@ -113,7 +113,7 @@
                             <h1 class="text-left">Total</h1>
                         </td>
                         <td class="text-right">
-                            <h1><strong>$31.53</strong></h1>
+                            <h1><strong>{{presentPrice(Cart::total())}}</strong></h1>
                         </td>
                     </tr>
                     <tr>
