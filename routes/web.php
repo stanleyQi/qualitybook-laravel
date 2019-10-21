@@ -20,9 +20,8 @@ route::get('/book/{id}','BookController@show')->name('book');
 //cart
 route::get('/cart','CartController@index')->name('cart');
 route::post('/cart','CartController@store')->name('cart.store');
-route::get('/empty',function(){
-    Cart::destroy();
-});
+route::delete('/cart/{id}','CartController@destroy')->name('cart.destroy');
+route::get('/empty','CartController@empty')->name('cart.empty');
 
 route::view('/profile','customer.profile');
 

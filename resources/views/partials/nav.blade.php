@@ -14,11 +14,13 @@
                 <a class="btn btn-default navbar-btn navbar-right action-button" role="button" href="#">Sign Up</a>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Contact Us</a></li>
-                <li><a href="{{ route('booklist') }}">Booklist</a></li>
+                    <li><a href="{{ route('booklist') }}">Booklist</a></li>
                     <li>
                         <a href="{{ route('cart') }}">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
-                            <span id="cart-component">0</span>
+                            @if (Cart::instance('default')->count()>0)
+                            <span id="cart-component" style="color:#135E36;">{{Cart::instance('default')->count()}}</span>
+                            @endif
                         </a>
                     </li>
                     <li><a href="#">Login</a></li>

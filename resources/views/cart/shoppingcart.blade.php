@@ -22,6 +22,11 @@
 
             @if (Cart::count()==0)
             <h2>The shopping cart is empty.</h2>
+            <div style="margin-bottom:20px;">
+                <a type="button" class="btn btn-default" href="{{route('booklist')}}">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                </a>
+            </div>
             @else
             <h2>There are {{ Cart::count() }} item(s) in the shopping cart.</h2>
             <table class="table table-hover">
@@ -37,19 +42,21 @@
                             <h3>Price</h3>
                         </th>
                         <th class="text-center">
+                            <h3>Tax</h3>
+                        </th>
+                        <th class="text-center">
                             <h3>Sub total</h3>
                         </th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{--        TODO            --}}
                     @foreach (Cart::content() as $item)
                     <tr class="shoppingcart-item">
                         <td class="col-md-6">
                             <div class="media">
-                                <a class="thumbnail pull-left" href="#"> <img class="media-object"
-                                        src="{{ asset('img/book'.$item->model->id.'.jpg') }}"
+                                <a class="thumbnail pull-left" href="{{route('book',$item->model->id)}}"> <img
+                                        class="media-object" src="{{ asset('img/book'.$item->model->id.'.jpg') }}"
                                         style="width: 72px; height: 72px;"> </a>
                                 <div class="media-body">
                                     <h4 class="media-heading"><a href="#">{{$item->model->BookName}}</a></h4>
@@ -58,18 +65,24 @@
                             </div>
                         </td>
                         <td class="col-md-1" style="text-align: center">
-                            <input type="email" class="form-control" id="exampleInputEmail1" value="2" />
+                            <input type="email" class="form-control" id="exampleInputEmail1" value="1" />
                         </td>
-                        <td class="col-md-1 text-center"><strong>$X.XX</strong></td>
-                        <td class="col-md-1 text-center"><strong>$X.XX</strong></td>
+                        <td class="col-md-1 text-center"><strong>{{$item->model->presentPrice()}}</strong></td>
+                        <td class="col-md-1 text-center"><strong>{{$item->model->presentTax()}}</strong></td>
+                        <td class="col-md-1 text-center"><strong>{{$item->model->presentSubtotal()}}</strong></td>
                         <td class="col-md-1">
-                            <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove"></span> Remove
-                            </button>
+                            <form action="{{route('cart.destroy',$item->rowId)}}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE')}}
+
+                                <button type="submit" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove"></span>Remove
+                                </button>
+                            </form>
+
                         </td>
                     </tr>
                     @endforeach
-                    {{----}}
                     <tr>
                         <td>  </td>
                         <td>  </td>
@@ -107,14 +120,16 @@
                         <td>  </td>
                         <td>  </td>
                         <td>
-                            <button type="button" class="btn btn-default">
-                                Clear Shopping Cart
-                            </button>
+                            <a href="{{route('cart.empty')}}">
+                                <button type="button" class="btn btn-default">
+                                    Clear Shopping Cart
+                                </button>
+                            </a>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default">
+                            <a type="button" class="btn btn-default" href="{{route('booklist')}}">
                                 <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                            </button>
+                            </a>
                         </td>
                         <td>
                             <button type="button" class="btn btn-success shoppingcart-checkout">
