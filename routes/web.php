@@ -22,6 +22,7 @@ route::get('/cart','CartController@index')->name('cart');
 route::post('/cart','CartController@store')->name('cart.store');
 route::delete('/cart/{id}','CartController@destroy')->name('cart.destroy');
 route::get('/empty','CartController@empty')->name('cart.empty');
+route::patch('/cart/{id}','CartController@update')->name('cart.update');
 
 route::view('/profile','customer.profile');
 

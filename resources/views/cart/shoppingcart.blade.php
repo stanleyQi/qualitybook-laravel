@@ -7,7 +7,27 @@
 @endsection
 
 @section('extra-js')
-
+<script src="{{asset('js/app.js')}}"></script>
+<script>
+    (function(){
+        const quantities = document.querySelectorAll('.quantity');
+        Array.from(quantities).forEach(function(element){
+            element.addEventListener('change',function(){
+                const id = element.getAttribute('data-id');
+                axios.patch(`cart/${id}`, {
+                    quantity:this.value
+                })
+                .then(function (response) {
+                    console.log(response);
+                    window.location.href = '{{route('cart')}}';
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            })
+        });
+    })();
+</script>
 @endsection
 
 @section('content')
@@ -35,14 +55,15 @@
                         <th>
                             <h3>Product</h3>
                         </th>
+
+                        <th class="text-center">
+                            <h3>Unit Price</h3>
+                        </th>
+                        <th class="text-center">
+                            <h3>Unit Tax</h3>
+                        </th>
                         <th>
                             <h3>Quantity</h3>
-                        </th>
-                        <th class="text-center">
-                            <h3>Price</h3>
-                        </th>
-                        <th class="text-center">
-                            <h3>Tax</h3>
                         </th>
                         <th class="text-center">
                             <h3>Sub total</h3>
@@ -64,12 +85,17 @@
                                 </div>
                             </div>
                         </td>
+
+                        <td class="col-md-1 text-center"><strong>{{presentPrice($item->price)}}</strong></td>
+                        <td class="col-md-1 text-center"><strong>{{presentPrice($item->tax)}}</strong></td>
                         <td class="col-md-1" style="text-align: center">
-                            <input type="email" class="form-control" id="exampleInputEmail1" value="1" />
+                            <select class="quantity" style="color:black;" data-id="{{$item->rowId}}">
+                                @for($i=1;$i<10+1;$i++) <option value={{$i}} {{$item->qty==$i?'selected':''}}>{{$i}}
+                                    </option>
+                                    @endfor
+                            </select>
                         </td>
-                        <td class="col-md-1 text-center"><strong>{{$item->model->presentPrice()}}</strong></td>
-                        <td class="col-md-1 text-center"><strong>{{$item->model->presentTax()}}</strong></td>
-                        <td class="col-md-1 text-center"><strong>{{$item->model->presentSubtotal()}}</strong></td>
+                        <td class="col-md-1 text-center"><strong>{{presentPrice($item->subtotal)}}</strong></td>
                         <td class="col-md-1">
                             <form action="{{route('cart.destroy',$item->rowId)}}" method="POST">
                                 {{ csrf_field() }}
