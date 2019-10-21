@@ -1,0 +1,25 @@
+.booklist-category {
+  margin-top: 50px;
+}
+
+.booklist-category > ul > li {
+  margin-bottom: 30px;
+  font-size: 3rem;
+}
+
+.booklist-category > ul > li > a {
+  color: white;
+}
+
+hr {
+  border: 2px solid white;
+}
+
+h1 {
+  text-align: center;
+}
+
+.row.booklist-row {
+  margin-top: 30px;
+}
+

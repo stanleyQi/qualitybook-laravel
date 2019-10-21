@@ -1,0 +1,22 @@
+.row.bookdetails-row {
+  margin-top: 30px;
+}
+
+.bookdetails-bookname {
+  border-bottom: 3px solid white;
+}
+
+.container.bookdetails-container {
+  width: 80%;
+  max-width: 1000px;
+}
+
+.btn.btn-default.bookdetails-addtocart {
+  background-color: rgb(86,198,198);
+  border: none;
+}
+
+.input-group.bookdetails-amount {
+  max-width: 150px;
+}
+

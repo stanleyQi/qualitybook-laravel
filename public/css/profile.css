@@ -1,0 +1,35 @@
+.container.profile-container {
+  width: 80%;
+  max-width: 1000px;
+}
+
+.row.profile-row {
+  /*border-bottom: 2px solid white;*/
+}
+
+.row.profile-customerinfo {
+  /*border: 2px solid white;*/
+  background-color: white;
+  color: black;
+}
+
+.row.profile-customerinfo a {
+  border: none;
+}
+
+table {
+  border: 2px solid white;
+}
+
+table thead {
+}
+
+.profile-orderlist {
+  background-color: white;
+  color: black;
+}
+
+table thead {
+  border-bottom: 2px solid black;
+}
+
