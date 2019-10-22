@@ -8,7 +8,9 @@ define('TAX_RATE',0.15);
 
 class Book extends Model
 {
-    // const TAX_RATE = 0.15;
+    public function categories(){
+        return $this->belongsToMany('App\Category');
+    }
 
     public function presentPrice(){
         return "$".sprintf('%01.2f',$this->Price);

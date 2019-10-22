@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -15,9 +16,18 @@ class BookController extends Controller
     public function index()
     {
         //
-        $books = Book::inRandomOrder()->take(12)->get();
+        if(request()->category){
+            $books = Book::with('categories')->whereHas('categories',function($query){
+                $query->where('category_id',request()->category);
+            })->get();
+            $categories = Category::all();
+        }else{
+            $books = Book::inRandomOrder()->take(12)->get();
+            $categories = Category::all();
+        }
 
-        return view('book\booklist')->with('books',$books);
+
+        return view('book\booklist')->with(['books'=>$books,'categories'=>$categories]);
     }
 
     /**
@@ -29,8 +39,8 @@ class BookController extends Controller
     public function show($id)
     {
         //
-        $book = Book::where('id',$id)->firstOrFail();
+        $book = Book::where('id', $id)->firstOrFail();
 
-        return view('book\bookdetails')->with('book',$book);
+        return view('book\bookdetails')->with('book', $book);
     }
 }

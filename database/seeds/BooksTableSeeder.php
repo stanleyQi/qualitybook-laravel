@@ -21,7 +21,13 @@ class BooksTableSeeder extends Seeder
             'Price' =>101,
             'Author' =>'liqi',
             'PreferredFlag' =>1,
-        ]);
+        ])->Categories()->attach(1);
+
+            $book = Book::find(1);
+            $book->categories()->attach(2);
+            $book->categories()->attach(3);
+            $book->categories()->attach(4);
+
         Book::create([
             'BookName'=> 'book2',
             'ShortDescription' =>'good book',
@@ -30,7 +36,7 @@ class BooksTableSeeder extends Seeder
             'Price' =>102,
             'Author' =>'liqi',
             'PreferredFlag' =>1,
-        ]);
+        ])->Categories()->attach(2);
         Book::create([
             'BookName'=> 'book3',
             'ShortDescription' =>'good book',
@@ -39,6 +45,6 @@ class BooksTableSeeder extends Seeder
             'Price' =>103,
             'Author' =>'liqi',
             'PreferredFlag' =>1,
-        ]);
+        ])->Categories()->attach(3);
     }
 }
