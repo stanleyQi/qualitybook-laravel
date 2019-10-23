@@ -14,9 +14,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $books = Book::inRandomOrder()->take(3)->get();
+        $books1 = Book::where('PreferredFlag',1)->take(3)->get();
+        $books2 = Book::where('PreferredFlag',2)->take(3)->get();
+        $books3 = Book::where('PreferredFlag',3)->take(3)->get();
 
-        return view('home')->with('books',$books);
+        return view('home')->with('books',['books1'=>$books1,'books2'=>$books2,'books3'=>$books3]);
     }
 
 }

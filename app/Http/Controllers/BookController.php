@@ -16,16 +16,25 @@ class BookController extends Controller
     public function index()
     {
         //
+        $pagination = 2;
+
         if(request()->category){
             $books = Book::with('categories')->whereHas('categories',function($query){
                 $query->where('category_id',request()->category);
-            })->get();
+            });
             $categories = Category::all();
         }else{
-            $books = Book::inRandomOrder()->take(12)->get();
+            $books = Book::take(12);
             $categories = Category::all();
         }
 
+    if (request()->sort==="low_high") {
+        $books = $books->orderBy('Price')->paginate($pagination);
+    }elseif (request()->sort==="high_low") {
+        $books = $books->orderBy('Price','desc')->paginate($pagination);
+    }else {
+        $books = $books->paginate($pagination);
+    }
 
         return view('book\booklist')->with(['books'=>$books,'categories'=>$categories]);
     }
