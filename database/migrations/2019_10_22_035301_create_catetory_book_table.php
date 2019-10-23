@@ -19,7 +19,7 @@ class CreateCatetoryBookTable extends Migration
             $table->integer('book_id')->unsigned()->nullable();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->integer('category_id')->unsigned()->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
 
             $table->timestamps();
         });
