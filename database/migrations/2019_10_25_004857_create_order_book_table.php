@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCatetoryBookTable extends Migration
+class CreateOrderBookTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateCatetoryBookTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_category', function (Blueprint $table) {
+        Schema::create('order_book', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('order_id')->unsigned()->nullable();
+            $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('set null');
+
             $table->bigInteger('book_id')->unsigned()->nullable();
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
-            $table->integer('category_id')->unsigned()->nullable();
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onUpdate('cascade')->onDelete('set null');
+
+            $table->integer('quantity')->unsigned();
 
             $table->timestamps();
         });
@@ -32,6 +35,6 @@ class CreateCatetoryBookTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_category');
+        Schema::dropIfExists('order_book');
     }
 }

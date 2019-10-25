@@ -26,3 +26,13 @@ route::patch('/cart/{id}','CartController@update')->name('cart.update');
 
 route::view('/profile','customer.profile');
 
+Route::get('/checkout','CheckoutController@store')->name('checkout.store')->middleware('auth');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

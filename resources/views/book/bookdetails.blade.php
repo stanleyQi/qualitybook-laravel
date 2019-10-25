@@ -10,7 +10,7 @@
 <div class="container bookdetails-container">
     <div class="row bookdetails-row" style="margin-bottom:20px;">
         <div class="col-lg-5 col-md-12">
-            <div class="text-center"><img src="{{ asset('img/book'.$book->id.'.jpg') }}"></div>
+            <div class="text-center"><img src="{{ asset('storage/'.$book->ImageUrl) }}"></div>
         </div>
         <div class="col-lg-7 col-md-12">
             <div class="row">

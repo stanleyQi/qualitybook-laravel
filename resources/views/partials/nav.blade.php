@@ -11,7 +11,7 @@
             </div>
 
             <div class="collapse navbar-collapse" id="navcol-1">
-                <a class="btn btn-default navbar-btn navbar-right action-button" role="button" href="#">Sign Up</a>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Contact Us</a></li>
                     <li><a href="{{ route('booklist') }}">Booklist</a></li>
@@ -19,11 +19,39 @@
                         <a href="{{ route('cart') }}">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                             @if (Cart::instance('default')->count()>0)
-                            <span id="cart-component" style="color:#135E36;">{{Cart::instance('default')->count()}}</span>
+                            <span id="cart-component"
+                                style="color:#135E36;">{{Cart::instance('default')->count()}}</span>
                             @endif
                         </a>
                     </li>
-                    <li><a href="#">Login</a></li>
+                    @guest
+                    <li><a href="{{route('login')}}">Login</a></li>
+                    <li><a class="btn btn-default navbar-btn navbar-right action-button" role="button"
+                            href="{{route('register')}}">Sign Up</a></li>
+                    @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <ul>
+                                <li style="list-style-type:none;"><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                                <li style="list-style-type:none">Profile</li>
+                            </ul>
+                        </div>
+                    </li>
+                    @endguest
                 </ul>
                 <form class="navbar-form navbar-left navbar-style navbar-right" id="navcol-1">
                     <div class="form-group header-search">

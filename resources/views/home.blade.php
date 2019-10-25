@@ -17,11 +17,14 @@
             <h2>Best seller</h2>
         </div>
     </div>
+
+{{--    {{dd($books)}}--}}
+
     <div class="row">
         @foreach($books['books1'] as $book)
         <div class="col-md-3">
             <div class="thumbnail">
-                <a href="{{route('book',$book->id)}}"><img src="{{ asset('img/book'.$book->id.'.jpg') }}" alt="..."
+                <a href="{{route('book',$book->id)}}"><img src="{{ asset('storage/'.$book->ImageUrl) }}" alt="..."
                         class=".img-thumbnail"></a>
                 <div class="caption">
                     <a href="{{route('book',$book->id)}}">

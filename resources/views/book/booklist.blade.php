@@ -48,8 +48,8 @@
                 @forelse ($books as $book)
                 <div class="col-lg-6 col-md-6">
                     <div class="thumbnail">
-                        <a href="{{route('book',$book->id)}}"><img src="{{ asset('img/book'.$book->id.'.jpg') }}"
-                                alt="..." class=".img-thumbnail" /></a>
+{{--                        <a href="{{route('book',$book->id)}}"><img src="{{ asset('img/book'.$book->id.'.jpg') }}" alt="..." class=".img-thumbnail" /></a>--}}
+                        <a href="{{route('book',$book->id)}}"><img src="{{ asset('storage/'.$book->ImageUrl) }}" alt="book" class=".img-thumbnail" /></a>
                         <div class="caption">
                             <a href="{{route('book',$book->id)}}">
                                 <h3>{{ $book->BookName }}</h3>

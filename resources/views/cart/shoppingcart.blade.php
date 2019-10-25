@@ -158,9 +158,9 @@
                             </a>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-success shoppingcart-checkout">
-                                Checkout <span class="glyphicon glyphicon-play"></span>
-                            </button>
+                            <a type="button" class="btn btn-success shoppingcart-checkout" href="{{route('checkout.store')}}">
+                                <span class="glyphicon glyphicon-play"></span>Check out
+                            </a>
                         </td>
                     </tr>
                 </tbody>
