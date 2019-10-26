@@ -18,7 +18,7 @@
         </div>
     </div>
 
-{{--    {{dd($books)}}--}}
+   {{-- {{dd($books)}} --}}
 
     <div class="row">
         @foreach($books['books1'] as $book)
