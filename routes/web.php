@@ -11,22 +11,22 @@
 |
 */
 //route::view('/','home');
-route::get('/','HomeController@index')->name('home');
+route::get('/', 'HomeController@index')->name('home');
 
 //route::view('/booklist','book.booklist');
-route::get('/booklist','BookController@index')->name('booklist');
-route::get('/book/{id}','BookController@show')->name('book');
+route::get('/booklist', 'BookController@index')->name('booklist');
+route::get('/book/{id}', 'BookController@show')->name('book');
 
 //cart
-route::get('/cart','CartController@index')->name('cart');
-route::post('/cart','CartController@store')->name('cart.store');
-route::delete('/cart/{id}','CartController@destroy')->name('cart.destroy');
-route::get('/empty','CartController@empty')->name('cart.empty');
-route::patch('/cart/{id}','CartController@update')->name('cart.update');
+route::get('/cart', 'CartController@index')->name('cart');
+route::post('/cart', 'CartController@store')->name('cart.store');
+route::delete('/cart/{id}', 'CartController@destroy')->name('cart.destroy');
+route::get('/empty', 'CartController@empty')->name('cart.empty');
+route::patch('/cart/{id}', 'CartController@update')->name('cart.update');
 
-route::view('/profile','customer.profile');
+route::view('/profile', 'customer.profile');
 
-Route::get('/checkout','CheckoutController@store')->name('checkout.store')->middleware('auth');
+Route::get('/checkout', 'CheckoutController@store')->name('checkout.store')->middleware('auth');
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -36,3 +36,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->group(function () {
+    // user
+    Route::get('/myaccount', 'UserController@show')->name('user.show');
+});

@@ -47,7 +47,7 @@
                                         @csrf
                                     </form>
                                 </li>
-                                <li style="list-style-type:none">Profile</li>
+                            <li style="list-style-type:none"><a href="{{ route('user.show') }}">My account</a></li>
                             </ul>
                         </div>
                     </li>
