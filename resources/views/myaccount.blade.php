@@ -54,7 +54,7 @@
                         <td>{{presentPrice($order->gst)}}</td>
                         <td>{{presentPrice($order->grandtotal)}}</td>
                         <td class="adminindex-operation">
-                            <a href="#">Select</a>
+                            <a href="{{ route('user.show',['orderid' => $order->orderid]) }}">Select</a>
                         </td>
                     </tr>
                     @endforeach
@@ -76,15 +76,16 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($orderbooks as $orderBook)
                 <tr>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-
+                    <td>{{ $orderBook->bookid }}</td>
+                    <td>{{ $orderBook->bookname}}</td>
+                    <td>{{ $orderBook->category }}</td>
+                    <td>LiQi Ltd.cn</td>
+                    <td>{{ presentPrice($orderBook->Price)}}</td>
+                    <td>{{ $orderBook->quantity }}</td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

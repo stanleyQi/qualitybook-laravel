@@ -66,9 +66,22 @@ order by orderdetail.created_at desc";
         // var_dump($user);
         // var_dump($orders);
 
+        $orderid = (request()->get('orderid') !== null) ? (int) request()->get('orderid') : 0;
+        // var_dump($orderid);
+
+        $sqlfororderbooks = "select order_book.book_id as bookid, books.BookName as bookname,
+cat.category, books.Price, order_book.quantity
+from order_book join books on order_book.book_id = books.id
+join ( select book_category.book_id as bookid, GROUP_CONCAT(category.name SEPARATOR ',') as category
+		from book_category left join category on book_category.category_id = category.id
+		group by bookid ) as cat on books.id = cat.bookid
+where order_book.order_id=:orderid";
+        $orderBooks = DB::select($sqlfororderbooks, ['orderid' => $orderid]);
+
         return view('myaccount')->with([
             'user' => $user,
-            'orders' => $orders
+            'orders' => $orders,
+            'orderbooks'=> $orderBooks
         ]);
     }
 
