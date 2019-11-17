@@ -56,8 +56,16 @@
                             </a>
                             <p>{{ $book->Description }}</p>
                             <p class="home-p-price"></p>
-                            <div class="home-div-btn"><a href="#" class="btn btn-primary home-btn-addtocart">Add to
-                                    cart</a></div>
+                            {{-- <div class="home-div-btn">
+                                <a href="#" class="btn btn-primary home-btn-addtocart">Add tocart</a>
+                            </div> --}}
+                            <form action="{{ route('cart.store') }}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="id" value="{{$book->id}}">
+                                <input type="hidden" name="name" value="{{$book->BookName}}">
+                                <input type="hidden" name="price" value="{{$book->Price}}">
+                                <button class="btn btn-default bookdetails-addtocart" type="submit">Add to Cart</button>
+                            </form>
                             <div class="home-div-price"><span class="home-price">{{ $book->presentPrice() }}</span>
                             </div>
                             <p></p>

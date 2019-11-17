@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
+
 use App\OrderBook;
 use App\Order;
 use Illuminate\Http\Request;
@@ -56,6 +58,8 @@ class CheckoutController extends Controller
 
         //clear shopping cart
         Cart::destroy();
+
+        Log::info(auth()->user()->name." are placed an order(orderid:".$order->id.").");
 
         //return
         return view('cart/checkout');

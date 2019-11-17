@@ -19,9 +19,11 @@
         </div>
         <div class="row">
             <div class="col-lg-10 col-md-10">
-                <div style="display:inline-block;margin-right:20px;">UserId: {{ $user->id }}</div>
-                <div style="display:inline-block;margin-right:20px;">UserName: {{ $user->name }}</div>
-                <div style="display:inline-block;margin-right:20px;">Email: {{ $user->email }}</div>
+                <div style="margin-right:20px;">UserId: {{ $user->id }}</div>
+                <div style="margin-right:20px;">UserName: {{ $user->name }}</div>
+                <div style="margin-right:20px;">Email: {{ $user->email }}</div>
+                <div style="margin-right:20px;">Tel: 0226666666</div>
+                <div style="margin-right:20px;">Address: 53 Kitiwake DR, NorthShore, Auckland</div>
                 {{-- <h3>LockEnd: XXXX/XX/xx</h3> --}}
             </div>
             {{-- <div class="col-lg-6 col-md-9">
@@ -81,7 +83,7 @@
                     <td>{{ $orderBook->bookid }}</td>
                     <td>{{ $orderBook->bookname}}</td>
                     <td>{{ $orderBook->category }}</td>
-                    <td>LiQi Ltd.cn</td>
+                    <td>LiQi Ltd.</td>
                     <td>{{ presentPrice($orderBook->Price)}}</td>
                     <td>{{ $orderBook->quantity }}</td>
                 </tr>

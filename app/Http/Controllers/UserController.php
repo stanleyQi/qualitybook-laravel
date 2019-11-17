@@ -49,8 +49,8 @@ class UserController extends Controller
         //
         $user = auth()->user();
         $sql = "select  orderdetail.orderid,orderdetail.created_at,
-(case when orderdetail.status=1 then 'wating'
-when orderdetail.status=2 then 'shipping' else 'shipping' end) as status,
+(case when orderdetail.status=1 then 'waiting'
+when orderdetail.status=2 then 'shipped' else 'shipped' end) as status,
 sum(orderdetail.quantity*books.Price) as subtotal,
 sum(orderdetail.quantity*books.Price)*0.15 as gst,
 sum(orderdetail.quantity*books.Price)*1.15 as grandtotal

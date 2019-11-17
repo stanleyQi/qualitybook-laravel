@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+
+use Illuminate\Support\Facades\Log;
+
 class LoginController extends Controller
 {
     /*
@@ -35,6 +38,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        //$this->middleware(['auth', 'verified']);
     }
 
     public function showLoginForm(){
@@ -44,6 +48,9 @@ class LoginController extends Controller
     }
 
     public function redirectTo(){
+
+        Log::info(auth()->user()->name . " are logged on to the website.");
+        //logtool(auth()->user()->name." are logged on to the website.");
         return str_replace(url('/'),'',session()->get('previousUrl','/'));
     }
 }

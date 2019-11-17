@@ -13,7 +13,7 @@
             <div class="collapse navbar-collapse" id="navcol-1">
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Contact Us</a></li>
+                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
                     <li><a href="{{ route('booklist') }}">Booklist</a></li>
                     <li>
                         <a href="{{ route('cart') }}">

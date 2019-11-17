@@ -12,6 +12,7 @@
 */
 //route::view('/','home');
 route::get('/', 'HomeController@index')->name('home');
+route::get('/contactus', 'HomeController@contactus')->name('contactus');
 
 //route::view('/booklist','book.booklist');
 route::get('/booklist', 'BookController@index')->name('booklist');
@@ -34,7 +35,9 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-Auth::routes();
+// Auth::routes();
+Auth::routes(['verify' => true]);
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function () {
