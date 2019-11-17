@@ -12,6 +12,12 @@ class Book extends Model
         return $this->belongsToMany('App\Category');
     }
 
+    public function supplier()
+    {
+        $supplier = $this->belongsTo('App\Supplier');
+        return $this->belongsTo('App\Supplier');
+    }
+
     public function presentPrice(){
         return "$".sprintf('%01.2f',$this->Price);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -47,8 +48,14 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
-        $book = Book::where('id', $id)->firstOrFail();
+        $book = Book::with('supplier')->where('id', $id)->firstOrFail();
+
+        // $book1 = DB::table('books')
+        //     ->join('suppliers', 'books.supplier_id', '=', 'suppliers.id')
+        //     ->where('books.id', ['id' => $id])
+        //     ->select('books.*', 'suppliers.name as suppliername')
+        //     ->get();
+        // $book->offsetSet('suppliername',$book1[0]->suppliername);
 
         return view('book\bookdetails')->with('book', $book);
     }

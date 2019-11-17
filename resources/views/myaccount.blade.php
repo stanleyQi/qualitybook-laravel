@@ -83,7 +83,7 @@
                     <td>{{ $orderBook->bookid }}</td>
                     <td>{{ $orderBook->bookname}}</td>
                     <td>{{ $orderBook->category }}</td>
-                    <td>LiQi Ltd.</td>
+                    <td>{{ $orderBook->suppliername }}</td>
                     <td>{{ presentPrice($orderBook->Price)}}</td>
                     <td>{{ $orderBook->quantity }}</td>
                 </tr>

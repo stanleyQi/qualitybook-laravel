@@ -22,8 +22,9 @@
                 <div class="col-lg-5 col-md-12">
                     <h4 class="text-left">Author: {{$book->Author}}</h4>
                     <h4 class="text-left">Catetory:{{$book->categories()->first()->name}} </h4>
-                    <h4 class="text-left">Supplier: LiQi Ltd.</h4>
-                    <h4 class="text-left">Price: {{$book->presentPrice()}}</h4>
+                {{-- <h4 class="text-left">Supplier: {{ $book->suppliername }}</h4> --}}
+                <h4 class="text-left">Supplier: {{ $book->supplier->name }}</h4>
+                <h4 class="text-left">Price: {{$book->presentPrice()}}</h4>
                     <div>
                         {{-- <br>
                         <div class="input-group bookdetails-amount">
