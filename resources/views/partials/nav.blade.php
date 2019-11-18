@@ -53,12 +53,17 @@
                     </li>
                     @endguest
                 </ul>
-                <form class="navbar-form navbar-left navbar-style navbar-right" id="navcol-1">
+
+            <form  method="get" action="{{route('search')}}" class="navbar-form navbar-left navbar-style navbar-right" id="navcol-1">
                     <div class="form-group header-search">
                         <label class="control-label" for="search-field"><i
                                 class="glyphicon glyphicon-search nav-search-icon"></i></label>
                         <input type="search" class="form-control search-field" id="search-field" name="search"
-                            placeholder="I am looking for..." />
+                        placeholder="I am looking for..."  style="display:inline-block;width:60%" value="{{request()->search}}"/>
+                            <select class="custom-select search-type" id="searchCriteria" name="searchCriteria" style="display:inline-block;font-size:1rem;border:none;">
+                                <option value="1" <?php if(request()->searchCriteria==1) echo "selected"; ?>>By Book Name</option>
+                                <option value="2" <?php if(request()->searchCriteria==2) echo "selected"; ?>>By Price</option>
+                            </select>
                     </div>
                 </form>
             </div>

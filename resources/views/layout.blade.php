@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/nav.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     @yield('extra-css')
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">

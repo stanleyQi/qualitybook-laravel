@@ -59,4 +59,30 @@ class BookController extends Controller
 
         return view('book\bookdetails')->with('book', $book);
     }
+
+    public function search()
+    {
+        //
+        $pagination = 2;
+
+        if (request()->searchCriteria==1) {
+            $query = request()->input('search');
+            $books = Book::where('BookName','like', "%$query%");
+            $categories = Category::all();
+        } else {
+            $query = request()->input('search');
+            $books = Book::where('Price', '=', $query);
+            $categories = Category::all();
+        }
+
+        if (request()->sort === "low_high") {
+            $books = $books->orderBy('Price')->paginate($pagination);
+        } elseif (request()->sort === "high_low") {
+            $books = $books->orderBy('Price', 'desc')->paginate($pagination);
+        } else {
+            $books = $books->paginate($pagination);
+        }
+
+        return view('book\booklist')->with(['books' => $books, 'categories' => $categories]);
+    }
 }

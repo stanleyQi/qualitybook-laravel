@@ -16,6 +16,7 @@ route::get('/contactus', 'HomeController@contactus')->name('contactus');
 
 //route::view('/booklist','book.booklist');
 route::get('/booklist', 'BookController@index')->name('booklist');
+route::get('/search', 'BookController@search')->name('search');
 route::get('/book/{id}', 'BookController@show')->name('book');
 
 //cart
