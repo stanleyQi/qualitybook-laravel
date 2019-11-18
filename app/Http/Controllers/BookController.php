@@ -67,7 +67,7 @@ class BookController extends Controller
 
         if (request()->searchCriteria==1) {
             $query = request()->input('search');
-            $books = Book::where('BookName','like', "%$query%");
+            $books = Book::where('BookName','like', "%$query%"); // return a query builder but not a collection
             $categories = Category::all();
         } else {
             $query = request()->input('search');
